@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/fragment::head"><title>Register</title></head>
+<body>
+<header th:replace="fragments/fragment::navbar">Navbar</header>
+<main>
+    <div class="container" id="container">
+        <input type="checkbox" id="flip">
+        <div class="cover">
+            <div class="cover-front">
+                <div class="front">
+                    <img src="/images/back.jpg" alt="">
+                    <div class="text">
+                        <span class="text-1">Complete miles of journey <br> with one step</span>
+                        <span class="text-2">Let's get started</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form  th:action="@{/users/register}"
+               th:method="post"
+               th:object="${userModel}"
+              class="flex-column justify-content-center">
+
+            <div class="form-content">
+                <div id="login-form" class="login-form">
+                    <div class="title">Register</div>
+                    <div class="input-boxes">
+                        <div class="input-box">
+                            <label for="username" class=""><i class="fas fa-user"></i></label>
+                            <input
+                                    id="username"
+                                    th:field="*{username}"
+                                    th:errorclass="is-invalid"
+                                    type="text"
+                                    min="3"
+                                    class=""
+                                    placeholder="Enter your username" required/>
+                            <small th:if="${#fields.hasErrors('username')}">
+                                Username is required and should be at least 3 symbols.
+                            </small>
+                        </div>
+                        <div class="input-box">
+                            <label for="firstName" class=""><i class="fas fa-user"></i></label>
+                            <input
+                                    id="firstName"
+                                    th:field="*{firstName}"
+                                    th:errorclass="is-invalid"
+                                    type="text"
+                                    min="2"
+                                    max="20"
+                                    class=""
+                                   placeholder="Enter your first name" required/>
+                            <small th:if="${#fields.hasErrors('firstName')}">
+                                First name is required and should be between 2 and 20 symbols.
+                            </small>
+                        </div>
+                        <div class="input-box">
+                            <label for="lastName" class=""><i class="fas fa-user"></i></label>
+                            <input id="lastName"
+                                   th:field="*{lastName}"
+                                   th:errorclass="is-invalid"
+                                   type="text"
+                                   min="2"
+                                   max="20"
+                                   class=""
+                                   placeholder="Enter your last name" required/>
+                            <small th:if="${#fields.hasErrors('lastName')}">
+                                Last name is required and should be between 2 and 20 symbols.
+                            </small>
+                        </div>
+
+                        <div class="input-box">
+                            <label for="email" class=""><i class="fas fa-envelope"></i></label>
+                            <input id="email"
+                                   th:field="*{email}"
+                                   th:errorclass="is-invalid"
+                                   type="text"
+                                   class=""
+                                   placeholder="Enter your email" required/>
+                            <small th:if="${#fields.hasErrors('email')}">
+                                <div
+                                    th:each="err : ${#fields.errors('email')}"
+                                    th:text="${err}"
+                                />
+                            </small>
+                        </div>
+                        <div class="input-box">
+                            <label for="password" class=""><i class="fas fa-lock"></i></label>
+                            <input id="password"
+                                   th:field="*{password}"
+                                   th:errorclass="is-invalid"
+                                   type="password"
+                                   min="5"
+                                   class=""
+                                   placeholder="Enter your password" required/>
+                            <small th:if="${#fields.hasErrors('password')}">
+                                Password is required and should be at least 5 symbols.
+                            </small>
+                        </div>
+
+                        <div class="input-box">
+                            <label for="confirmPassword" class=""><i class="fas fa-lock"></i></label>
+                            <input
+                                    id="confirmPassword"
+                                    th:field="*{confirmPassword}"
+                                    th:errorclass="is-invalid"
+                                    type="password"
+                                    class=""
+                                    placeholder="Confirm your password" required/>
+                            <small th:if="${#fields.hasErrors('confirmPassword')}">
+                                Passwords should match.
+                            </small>
+                        </div>
+                        <div class="button input-box">
+                            <input type="submit" class="button" value="Submit">
+                        </div>
+                    </div>
+<!--                    <div class="col col-md-4">-->
+<!--                        <div class="button-holder d-flex">-->
+<!--                            <input type="submit" class="btn btn-info btn-lg" value="Register"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="text sign-up-text">Already have an account?
+                        <label for="flip">
+                            <a  id="sign-up" class="" href="/users/login">Login now</a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+<div>
+    <script src="/static/js/flip.js">
+    </script>
+    <footer th:replace="fragments/fragment::footer"> </footer>
+</div>
+
+</body>
+</html>

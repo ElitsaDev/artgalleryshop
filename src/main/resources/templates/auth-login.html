@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragment::head"><title>Login</title></head>
+<body>
+<header th:replace="fragments/fragment::navbar">Navbar</header>
+<main>
+    <div class="container"  id="container">
+        <input type="checkbox" id="flip">
+        <div class="cover">
+            <div class="cover-front">
+                <div class="front">
+                    <!--                    <img src="images/front.jpg" alt="">-->
+                    <div class="text">
+                        <span class="text-1">Every new friend is a <br> new adventure</span>
+                        <span class="text-2">Let's get connected</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form th:action="@{/users/login}"
+              th:method="post"
+              class="flex-column justify-content-center">
+
+            <div class="form-content">
+                <div id="login-form" class="login-form">
+                    <div class="title">Login</div>
+                    <div class="input-boxes">
+
+                        <div class="input-box">
+                            <label for="username" class=""><i class="fas fa-envelope"></i></label>
+                            <input
+                                    id="username"
+                                    th:value="${username}"
+                                    name="username"
+                                    type="text"
+                                   class=""
+                                   placeholder="Enter your username" required/>
+                        </div>
+                        <div class="input-box">
+                            <label for="password"  class=""><i class="fas fa-lock"></i></label>
+                            <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    min="5"
+                                    class=""
+                                   placeholder="Enter your password" required/>
+                        </div>
+                        <div class="text"><a href="/password/forgetPassword">Forgot password?</a> </div>
+
+                        <p th:if="${bad_credentials}" class="errors alert alert-danger">
+                            Invalid username or password.
+                        </p>
+
+                        <div class="button input-box">
+                            <input type="submit" class="button" value="Submit">
+                        </div>
+                        <div class="text login-text">Don't have an account?
+                            <label for="flip">
+                                <a id="sign-in" class="" href="/users/register">Signup now</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+<div>
+<!--    <script src="/static/js/flip.js">-->
+<!--    </script>-->
+    <footer th:replace="fragments/fragment::footer"> </footer>
+</div>
+</body>
+</html>

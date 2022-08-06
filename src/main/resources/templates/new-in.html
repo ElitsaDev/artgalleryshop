@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/fragment::head" >
+    <title>New in</title>
+</head>
+<body>
+    <header th:replace="fragments/fragment::navbar"></header>
+    <!--Start Main Site Section-->
+    <main class="index-picture new-in">
+            <section class="site-title">
+        <div class="site-background">
+            <h5 class="text-center text-white mt-5">
+                New in <br>
+                Amazing masterpieces <br>
+                <button id="btn" class="btn" onclick="smoothScroll()">Explore</button>
+            </h5>
+        </div>
+            </section>
+    </main>
+        <!--End Main Site Section-->
+        <!--Blog Carousel-->
+    <header class="new-selection">
+        <h1>New</h1>
+        <p>
+            <span>&#139;</span>
+            <span>&#155;</span>
+        </p>
+    </header>
+    <section>
+        <div class="carousel">
+        <div class="slide-container">
+            <span class="slider-span" id="slider-span1"></span>
+            <span class="slider-span" id="slider-span2"></span>
+            <span class="slider-span" id="slider-span3"></span>
+            <div class="image-slider">
+    <!--   /*product*/-->
+                <div class="slides-div" id="slide-1">
+                   <picture>
+                       <img class="image-carousel" src="/images/painting1.jpg" alt="" id="img1">
+                   </picture>
+                    <div class="details>">
+                        <div class="text" th:text="name">Name</div>
+                        <div class="text"  th:text="year">Year</div>
+                        <div class="text"  th:text="author">Author</div>
+                        <samp class="text"  th:text="price">$Price</samp>
+                    </div>
+                    <a href="#slider-span1" class="img-button" id="button-1">
+                        <p class="star">
+                            <strong>&star;</strong>
+                            <strong>&star;</strong>
+                            <strong>&star;</strong>
+                            <strong>&star;</strong>
+                            <strong>&star;</strong>
+                        </p>
+                    </a>
+                </div>
+                <div class="slides-div" id="slide-2">
+                    <picture>
+                        <img class="image-carousel" src="/images/painting2.jpg" alt=""  id="img2">
+                    </picture>
+                    <div class="details>">
+                        <div class="text" th:text="name">Name</div>
+                        <div class="text"  th:text="year">Year</div>
+                        <div class="text"  th:text="author">Author</div>
+                        <samp class="text"  th:text="price">$Price</samp>
+                    </div>
+                    <a href="#slider-span2" class="img-button" id="button-2">
+                        <p class="star">
+                            <strong>&star;</strong>
+                            <strong>&star;</strong>
+                            <strong>&star;</strong>
+                            <strong>&star;</strong>
+                            <strong>&star;</strong>
+                        </p>
+                    </a>
+                </div>
+                <div class="slides-div" id="slide-3">
+                    <picture>
+                        <img class="image-carousel" src="/images/painting3.jpg" alt=""  id="img3">
+                    </picture>
+                    <div class="details>">
+                        <div class="text" th:text="name">Name</div>
+                        <div class="text"  th:text="year">Year</div>
+                        <div class="text"  th:text="author">Author</div>
+                        <samp class="text"  th:text="price">$Price</samp>
+                    </div>
+                    <a href="#slider-span3" class="img-button" id="button-3">
+                        <p class="star">
+                            <strong>&star;</strong>
+                            <strong>&star;</strong>
+                            <strong>&star;</strong>
+                            <strong>&star;</strong>
+                            <strong>&star;</strong>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(".slider").owlCarousel({
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 2000, //2000ms = 2s;
+            autoplayHoverPause: true,
+        });
+    </script>
+    <script>
+        $("#btn").click(function() {
+            $('html, body').animate({
+                scrollTop: $(".new-selection").offset().top}, 'slow');
+            return false;
+        });
+    </script>
+    <footer th:replace="fragments/fragment::footer">
+    </footer>
+</body>
+</html>

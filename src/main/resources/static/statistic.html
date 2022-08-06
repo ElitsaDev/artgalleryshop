@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Statistic</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<button id="loadStatistic">LOAD ALL Statistic</button>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>IP ADDRESS</th>
+        <th>LOCAL DATE TIME</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody id="authors-container"></tbody>
+</table>
+
+<form>
+    <h3>FORM</h3>
+    <label>ID</label>
+    <input type="title" id="id" placeholder="ID...">
+    <label>IP ADDRESS</label>
+    <input type="title" id="ip_address" placeholder="IP ADDRESS...">
+    <label>LOCAL DATE TIME</label>
+    <input type="title" id="local_date_time" placeholder="LOCAL DATE TIME...">
+    <button>Submit</button>
+</form>
+<script src="./appStat.js"></script>
+</body>
+</html>

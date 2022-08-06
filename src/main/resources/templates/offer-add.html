@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/fragment::head"><title></title></head>
+
+<body>
+<div th:replace="fragments/fragment::navbar">Navbar</div>
+<main class="container-fluid">
+    <div class="container">
+    <h2 class="text-center">Add New Offer</h2>
+    <form th:action="@{/offers/add}"
+          th:method="post"
+          th:object="${addOfferModel}"
+          class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
+        <div class="row">
+
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center font-weight-bold" for="productId">Product</label>
+                <select
+                        id="productId"
+                        name="productId"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">- Select a product -</option>
+                    <optgroup th:label="${author.name}"
+                              th:each="author : ${authors}">
+                        <option
+                                th:each="product : ${author.products}"
+                                th:text="${product.name}"
+                                th:value="${product.id}"
+                                th:selected="*{productId} == ${product.id}">Product
+                        </option>
+                    </optgroup>
+                </select>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Art product is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label for="price" class=" font-weight-bold">Price</label>
+                <input
+                        id="price"
+                        th:field="*{price}"
+                        th:errorclass="is-invalid"
+                        type="number"
+                        min="1"
+                        class="form-control"
+                        placeholder="Suggested price"
+                />
+                <p class="invalid-feedback errors alert alert-danger">
+                    Suggested price is required.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center font-weight-bold" for="medium">Medium</label>
+                <select
+                        id="medium"
+                        name="medium"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">- Select medium type -</option>
+                    <option th:each="e : ${T(bg.softuni.artgalleryshop.model.enums.MediumEnum).values()}"
+                            th:text="${e}"
+                            th:value="${e}"
+                            th:selected="${e} == *{medium}">
+                        Medium type
+                    </option>
+                </select>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Medium type is required.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label class="text-center font-weight-bold" for="style">Art style</label>
+                <select id="style"
+                        name="style"
+                        th:errorclass="is-invalid"
+                        class="form-control">
+                    <option value="">- Select style type -</option>
+                    <option th:each="e : ${T(bg.softuni.artgalleryshop.model.enums.StyleEnum).values()}"
+                            th:text="${e}"
+                            th:value="${e}"
+                            th:selected="${e} == *{style}">
+                        Art style
+                    </option>
+                </select>
+                <p class="invalid-feedback errors alert alert-danger">
+                    Art style is required.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6 mb-3">
+                <label for="year" class=" font-weight-bold">Year</label>
+                <input
+                        id="year"
+                        th:field="*{year}"
+                        th:errorclass="is-invalid"
+                        type="number"
+                        min="1500"
+                        step="1"
+                        class="form-control"
+                        placeholder="Art start year"
+                />
+                <p class="invalid-feedback errors alert alert-danger">
+                    A year of art is required and must be after 1500.
+                </p>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <label for="weight" class="font-weight-bold">Weight</label>
+                <input
+                        id="weight"
+                        th:field="*{weight}"
+                        th:errorclass="is-invalid"
+                        min="1"
+                        type="number"
+                        class="form-control"
+                        placeholder="Weight in grams"
+                />
+                <p class="invalid-feedback errors alert alert-danger">
+                    Weight in grams is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="font-weight-bold" for="description">Description</label>
+            <textarea
+                    id="description"
+                    th:field="*{description}"
+                    th:errorclass="is-invalid"
+                    type="textarea"
+                    class="form-control"
+                    rows="3"
+                    placeholder="Description"
+            >
+            </textarea>
+            <p class="invalid-feedback errors alert alert-danger">
+                Description is required.
+            </p>
+        </div>
+        <div class="form-group">
+            <label class="font-weight-bold" for="imageUrl">Image URL</label>
+            <input
+                    id="imageUrl"
+                    th:field="*{imageUrl}"
+                    th:errorclass="is-invalid"
+                    type="text"
+                    class="form-control"
+                    placeholder="Put art image URL here"
+            />
+            <p class="invalid-feedback errors alert alert-danger">
+                Art image URL is required.
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col col-md-4">
+                <div>
+                    <button type="submit" class="btn btn-search" value="Submit Offer">Submit Offer</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</main>
+<div>
+    <footer th:replace="fragments/fragment::footer"> </footer>
+</div>
+
+</body>
+
+</html>

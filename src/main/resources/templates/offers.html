@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/fragment::head"><title></title></head>
+
+<body>
+<header th:replace="fragments/fragment::navbar">Navbar</header>
+<main class="container-fluid">
+    <div class="container-fluid">
+        <h2 class="text-center text-white mt-5">All Offers</h2>
+        <div class="offers row col-sm-6  mx-auto d-flex flex-row justify-content-center">
+            <div class="row">
+                <div class="col-sm-6" th:each="offer : ${offers.getContent()}"
+                     th:object="${offer}" >
+                    <div class="offer card">
+                        <div class="card-img-top-wrapper">
+                            <img class="card-img-top" src="" th:src="*{imageUrl}" alt="Art image">
+                        </div>
+                        <div class="card-body pb-1">
+                            <h6 class="card-title">
+                                <th:block th:text="*{offerHighlight}"></th:block>
+                            </h6>
+                        </div>
+                        <ul class="offer-details list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="card-text"><span>• Weight: <th:block th:text="*{weight}"></th:block> </span></div>
+                                <div class="card-text"><span>• Price: <th:block th:text="*{price}"></th:block></span></div>
+                                <div class="card-text"><span>• Medium: <th:block th:text="*{medium}"></th:block></span></div>
+                                <div class="card-text"><span>• Style: <th:block th:text="*{style}"></th:block> </span></div>
+                            </li>
+                        </ul>
+                        <div class="card-body text-black">
+                            <a class="card-link text" href="#" th:href="@{/offers/{offerId}/details(offerId=*{id})}">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="nav-paging">
+            <ul class="nav-items-page">
+                <li class="page-item" th:classappend="${offers.isFirst()} ? 'disabled' : ''">
+                    <a th:unless="${offers.isFirst()}"
+                       th:href="@{/offers/all(size=${offers.getSize()},page=0)}"
+                       class="page-link" href="#">First</a>
+                    <a th:if="${offers.isFirst()}"
+                       class="page-link" href="#">First</a>
+                </li>
+            </ul>
+            <ul class="nav-items-page">
+                <li class="page-item" th:classappend="${offers.hasPrevious() ? '' : 'disabled'}">
+                    <a th:if="${offers.hasPrevious()}"
+                       th:href="@{/offers/all(size=${offers.getSize()},page=${offers.getNumber() - 1})}"
+                       class="page-link" href="#">Previous</a>
+                    <a th:unless="${offers.hasPrevious()}"
+                       class="page-link" href="#">Previous</a>
+                </li>
+            </ul>
+            <ul class="nav-items-page">
+                <li class="page-item" th:classappend="${offers.hasNext() ? '' : 'disabled'}">
+                    <a th:if="${offers.hasNext()}"
+                       th:href="@{/offers/all(size=${offers.getSize()},page=${offers.getNumber() + 1})}"
+                       class="page-link" href="#">Next</a>
+                    <a th:unless="${offers.hasNext()}"
+                       class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+            <ul class="nav-items-page">
+                <li class="page-item" th:classappend="${offers.isLast()} ? 'disabled' : ''">
+                    <a th:unless="${offers.isLast()}"
+                       th:href="@{/offers/all(size=${offers.getSize()},page=${offers.getTotalPages() - 1})}"
+                       class="page-link" href="#">Last</a>
+                    <a th:if="${offers.isLast()}"
+                       class="page-link" href="#">Last</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+    </div>
+    </div>
+</main>
+<div>
+    <footer th:replace="fragments/fragment::footer"> </footer>
+</div>
+</body>
+</html>
