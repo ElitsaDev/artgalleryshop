@@ -1,96 +1,55 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en" >
 
-<head th:replace="fragments/fragment::head"></head>
+<head th:replace="fragments/fragment::head"><title></title></head>
 
 <body>
 
-<div th:replace="fragments/fragment::navbar">
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="/"><img alt="car picture" src="/images/crystal_logo.gif" class="logo"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<div th:replace="fragments/fragment::navbar"></div>
+<main class="container-fluid">
+    <div class="container" id="container-table">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto col-12 justify-content-between">
-                <li class="nav-item"
-                    >
-                    <a class="nav-link" href="/authors/all">All Authors</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/offers/add">Add Offer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/offers/all">All Offers</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/">Action</a>
-                        <a class="dropdown-item" href="/">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/">Something else here</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <div class="form-inline my-2 my-lg-0 border px-3">
-                        <div class="logged-user"
-                             text="Welcome, Gosho"></div>
-                        <a class="nav-link" href="/users/logout">Logout</a>
-                    </div>
-                </li>
-                
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users/register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/users/login">Login</a>
-                    </li>
-                
-            </ul>
-        </div>
-    </nav>
-</div>
+        <h2 class="text-center m-3">All Authors</h2>
+        <div class='row mb-4 d-flex justify-content-around'>
+            <div th:each="author: ${authors}"
+                 class="brand-section d-flex flex-column">
+                <h4>Author:
+                    <span  th:text="${author.name}">Author name</span>
+                </h4>
+                <div class="brand-table">Product:
+                    <table>
+                        <tr>
+                            <th>No</th>
+                            <th>Product Name</th>
+                            <th>Product Category</th>
+                            <th>Year</th>
+                            <th>Width</th>
+                            <th>Length</th>
+                            <th>Picture</th>
+                        </tr>
+                        <tr th:each="product, iter:${author.products}"
+                            th:object="${product}">
+                            <th th:text="${iter.index}+1">No</th>
+                            <th th:text="*{name}">Name</th>
+                            <th th:text="*{category}">Category</th>
+                            <th th:text="*{year}">Year</th>
+                            <th th:text="*{width}?:'-'">Width</th>
+                            <th th:text="*{length}?:'-'">Length</th>
+                            <th><img alt="image" th:src="*{imageUrl}"
+                                     class="img-thumbnail rounded"></th>
 
-<div class="container">
-    <h2 class="text-center text-white m-3">All Authors</h2>
-    <div class='row mb-4 d-flex justify-content-around'>
-        <div  class="brand-section col-md-5 mr-auto d-flex flex-column">
-            <h2>Product author:
-                <span >Author name</span>
-            </h2>
-            <div>Models:
-                <table>
-                    <tr>
-                        <th>No</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>Start Year</th>
-                        <th>End Year</th>
-                        <th>Picture</th>
-                    </tr>
-                    <tr>
-                        <th>No</th>
-                        <th >Model Name</th>
-                        <th >Model Category</th>
-                        <th >Model Start Year</th>
-                        <th >Model End Year</th>
-                        <th><img alt="image" src="/"
-                                 class="img-thumbnail rounded"></th>
-                    </tr>
-                </table>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div>
-        <footer th:replace="fragments/fragment::footer"> </footer>
+        <div>
+            <footer th:replace="fragments/fragment::footer"> </footer>
+        </div>
+
     </div>
-</div>
+</main>
 </body>
+
 </html>

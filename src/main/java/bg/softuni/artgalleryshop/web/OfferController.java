@@ -7,6 +7,7 @@ import bg.softuni.artgalleryshop.model.user.ArtGalleryShopUserDetails;
 import bg.softuni.artgalleryshop.model.dto.offer.AddOfferDTO;
 import bg.softuni.artgalleryshop.service.AuthorService;
 import bg.softuni.artgalleryshop.service.OfferService;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -70,7 +71,7 @@ public class OfferController {
             redirectAttributes.addFlashAttribute("addOfferModel", addOfferModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addOfferModel",
                     bindingResult);
-            return "redirect:/offers/add";
+            return "redirect:/add";
         }
 
         offerService.addOffer(addOfferModel, userDetails);
@@ -139,5 +140,22 @@ public class OfferController {
     public String newIn(){
         return "new-in";
     }
+
+
+    @GetMapping("/offer/{id}")
+    public String offerDetails(@PathVariable String id,
+                               Model model) {
+        model.addAttribute("id", id);
+        return "details";
+    }
+
+    @PostMapping("/offer/{id}")
+    public String deleteOffer(@PathVariable("id") UUID uuid) {
+        offerService.deleteOfferById(uuid);
+
+        return "redirect:/offers/all";
+    }
+
+
 
 }

@@ -6,38 +6,48 @@
 <body>
 
 <div th:replace="fragments/fragment::navbar">Navbar</div>
-
-<div class="container-fluid">
+<main class="container-fluid">
+<div th:object="${offer}"  class="container-fluid">
     <h2 class="text-center text-white mt-5">Details</h2>
     <div class="offers row mx-auto d-flex flex-row justify-content-center">
         <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0" >
 
             <div class="card-body pb-1">
-                <h5 class="card-title">
-                    Offer year Author name Product name</h5>
-            </div>
+                <h4 class="card-title">Offer details</h4>
             <ul class="offer-details list-group list-group-flush">
                 <li class="list-group-item">
-                    <div class="card-text"><span>• Weight</span></div>
-                    <div class="card-text"><span>• Price</span></div>
-                    <div class="card-text"><span>• Medium type</span></div>
-                    <div class="card-text"><span>• Style type</span></div>
-                    <div class="card-text"><span>• Offer created</span></div>
-                    <div class="card-text"><span>• Offer modified</span></div>
-                    <div class="card-text"><span>• Author - First and Last name</span></div>
+                    <div class="card-text">• Product: <span th:text="*{product}"></span></div>
+                    <div class="card-text">• Weight: <span th:text="*{weight}"></span></div>
+                    <div class="card-text">• Price: <span th:text="*{price}"></span></div>
+                    <div class="card-text">• Medium type: <span th:text="*{medium}"></span></div>
+                    <div class="card-text">• Style type: <span th:text="*{style}"></span></div>
+                    <div class="card-text">• Product year: <span th:text="*{year}"></span></div>
+                    <div class="card-text">• Author: <span th:text="*{author}"></span></div>
                 </li>
             </ul>
-            <div class="card-body">
-                <a class="card-link" href="/">Update</a>
-                <a class="card-link" href="/">Delete</a>
+<!--            <div class="card-body">-->
+<!--                <a class="card-link text" href="/offers/update">Update</a>-->
+<!--                <a class="card-link text" href="/offers/delete">Delete</a>-->
+<!--            </div>-->
+            <div class="card-body" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+<!--                <a class="card-link" href="/">Delete</a>-->
+                    <!-- TODO Might be deleted only by admin and the seller -->
+                <form th:action="@{/offers/offer/{id}/(id=${id})}"
+                          th:method="delete">
+                        <input  class="card-link btn btn-search"
+
+                                type="submit"
+                                value="Delete">
+
+                </form>
             </div>
         </div>
-        <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
-            <img src="/" class="card-img-top"  alt="Art image">
+        <div class="card-img-top-wrapper">
+            <img th:src="*{imageUrl}" class="card-img-top"  alt="Art image">
         </div>
     </div>
 </div>
-
+</main>
 <div>
     <footer th:replace="fragments/fragment::footer"> </footer>
 </div>

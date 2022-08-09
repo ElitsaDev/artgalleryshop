@@ -58,7 +58,9 @@
             </li>
         </ul>
         <div class="card-body">
-            <a class="card-link text" th:href="@{/offers/search/{offerId}(offerId=${offer.id})}">Details</a>
+            <a class="card-link text" href="#" th:href="@{/offers/{offerId}/details(offerId=*{offer.id})}">Details</a>
+
+            <!-- <a class="card-link text" th:href="@{/offers/search/{offerId}(offerId=${offer.id})}">Details</a>-->
         </div>
     </div>
     <h3 th:if="${offers != null && offers.size == 0}" class="text-info">There are no offers with this product yet</h3>

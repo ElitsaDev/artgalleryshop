@@ -21,7 +21,7 @@ public class AuthorController {
     public String allOffers(
             Model model) {
 
-        model.addAttribute("offers", authorService.getAllAuthors());
+        model.addAttribute("authors", authorService.getAllAuthorsProducts());
 
         return "authors";
     }
