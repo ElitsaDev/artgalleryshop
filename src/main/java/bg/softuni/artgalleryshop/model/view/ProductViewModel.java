@@ -1,12 +1,5 @@
 package bg.softuni.artgalleryshop.model.view;
 
-import bg.softuni.artgalleryshop.model.entity.AuthorEntity;
-import bg.softuni.artgalleryshop.model.enums.CategoryEnum;
-
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
 public class ProductViewModel {
@@ -18,9 +11,9 @@ public class ProductViewModel {
 
     private int year;
 
-    private BigDecimal length;
+    private Integer length;
 
-    private BigDecimal width;
+    private Integer width;
 
     private String author;
 
@@ -31,11 +24,11 @@ public class ProductViewModel {
                             String imageUrl, int year, BigDecimal length,
                             BigDecimal width, String author) {
         this.name = name;
-        this.category = category;
-        this.imageUrl = imageUrl;
+        this.category = category.charAt(0) + category.substring(1,category.length()).toLowerCase();
+        this.imageUrl = imageUrl.replace("static","");
         this.year = year;
-        this.length = length;
-        this.width = width;
+        this.length = length.intValue();
+        this.width = width.intValue();
         this.author = author;
     }
 
@@ -71,19 +64,19 @@ public class ProductViewModel {
         this.year = year;
     }
 
-    public BigDecimal getLength() {
+    public Integer getLength() {
         return length;
     }
 
-    public void setLength(BigDecimal length) {
+    public void setLength(Integer length) {
         this.length = length;
     }
 
-    public BigDecimal getWidth() {
+    public Integer getWidth() {
         return width;
     }
 
-    public void setWidth(BigDecimal width) {
+    public void setWidth(Integer width) {
         this.width = width;
     }
 
@@ -94,4 +87,5 @@ public class ProductViewModel {
     public void setAuthor(String author) {
         this.author = author;
     }
+
 }

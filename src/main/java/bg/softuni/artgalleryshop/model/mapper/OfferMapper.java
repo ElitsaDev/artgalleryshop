@@ -16,4 +16,5 @@ public interface OfferMapper {
   @Mapping(source = "product.name", target = "product")
   @Mapping(source = "product.author.name", target = "author")
   OfferDetailDTO offerEntityToOfferDetailDTO(OfferEntity offerEntity);
+
 }
