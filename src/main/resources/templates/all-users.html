@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/fragment::head"></head>
 <body>
 
@@ -10,10 +11,12 @@
         <h2 class="text"><span class="text-1">
         Search user</span></h2>
     <div class="search">
-        <form th:action="@{/admin/all-users}" th:method="post" class="form-inline">
+        <form th:action="@{/admin/all-users}"
+              th:method="post" class="form-inline">
             <input th:name="text" name="text" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-search" type="submit">Search</button>
         </form>
+
     </div>
 
     <div class="container mt-3 mb-4">
@@ -40,8 +43,7 @@
                                             <div class="candidate-list-option">
                                                 <ul class="list-unstyled">
                                                     <li th:text="*{u.email}"><i class="fas fa-envelope-open"></i></li>
-                                                    <li th:text="*{u.gender}"><i class="fas fa-venus-mars"></i></li>
-                                                    <li th:text="*{u.phoneNumber}"><i class="fas fa-mobile-alt"></i>
+                                                    <li th:text="*{u.firstName}"><i class="fas fa-mobile-alt"></i>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -53,12 +55,14 @@
                                         <span class="candidate-list-time order-1" th:text="*{u.getRole().name}"></span>
                                     </td>
                                     <td>
-                                        <a th:href="@{/admin/change/{id}(id=*{u.id})}">Change</a>
+
+<!--                                        <a th:href="@{/admin/change/{id}(id=*{u.id})}">Change</a>-->
                                     </td>
                                     <td>
-                                        <li><a th:href="@{/admin/delete/{id}(id=*{u.id})}" class="text-danger" data-toggle="tooltip" title=""
-                                               data-original-title="Delete">Delete</a>
-                                        </li>
+
+<!--                                        <li><a th:href="@{/admin/delete/{id}(id=*{u.id})}" class="text-danger" data-toggle="tooltip" title=""-->
+<!--                                               data-original-title="Delete">Delete</a>-->
+<!--                                        </li>-->
                                     </td>
                                 </div>
                             </tr>
