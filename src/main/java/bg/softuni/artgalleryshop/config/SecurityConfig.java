@@ -35,6 +35,7 @@ public class SecurityConfig {
             antMatchers("/", "/users/login", "/users/register","/about-us").permitAll().
             antMatchers( "/password/forgetPassword", "/password/resetPassword").permitAll().
             antMatchers( "/offers/search/**", "/offers/**/details", "/offers/new-in", "/offers/all","/search/**", "/authors/all").permitAll().
+            antMatchers( "/order").permitAll().
         // all other pages are available for logger in users
             antMatchers("/offers/add","/offers/delete","/admin/**").hasRole(UserRoleEnum.ADMIN.name()).
             antMatchers("/offers/add").hasRole(UserRoleEnum.MODERATOR.name()).

@@ -2,6 +2,7 @@ package bg.softuni.artgalleryshop.web;
 
 import bg.softuni.artgalleryshop.model.view.UserViewModel;
 import bg.softuni.artgalleryshop.service.UserService;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

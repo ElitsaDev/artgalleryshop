@@ -56,8 +56,8 @@ public class UserRegistrationControllerGreenMailIT {
             param("email", "anna@example.com").
             param("firstName", "Anna").
             param("lastName", "Petrova").
-            param("password", "topsecret").
-            param("confirmPassword", "topsecret").
+            param("password", "123456").
+            param("confirmPassword", "123456").
             with(csrf())
         ).
         andExpect(status().is3xxRedirection()).

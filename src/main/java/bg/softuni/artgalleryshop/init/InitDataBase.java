@@ -15,7 +15,6 @@ public class InitDataBase implements CommandLineRunner {
         this.userService = userService;
     }
 
-
     @Override
     public void run(String... args) throws Exception {
         //Initialization of user roles

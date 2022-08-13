@@ -1,6 +1,7 @@
 package bg.softuni.artgalleryshop.web;
 
 import bg.softuni.artgalleryshop.service.EmailService;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -23,34 +24,34 @@ public class UserRegistrationControllerMockBeanIT {
 
   @Autowired
   private MockMvc mockMvc;
-
   @MockBean
   private EmailService mockEmailService;
 
   @Test
   void testRegistrationPageShown() throws Exception {
     mockMvc.perform(get("/users/register")).
-        andExpect(status().isOk()).
-        andExpect(view().name("auth-register"));
+            andExpect(status().isOk()).
+            andExpect(view().name("auth-register"));
   }
 
   @Test
   void testUserRegistration() throws Exception {
     mockMvc.perform(post("/users/register").
-        param("email", "anna@example.com").
-        param("firstName", "Anna").
-        param("lastName", "Petrova").
-        param("password", "topsecret").
-        param("confirmPassword", "topsecret").
-        cookie(new Cookie("lang", Locale.GERMAN.getLanguage())).
-        with(csrf())
-    ).
-        andExpect(status().is3xxRedirection()).
-        andExpect(redirectedUrl("/"));
+                    param("username", "TestUsername").
+                    param("firstName", "Petar").
+                    param("lastName", "Petrov").
+                    param("email", "pesho@test.bg").
+                    param("password", "123456").
+                    param("confirmPassword", "123456").
+                    cookie(new Cookie("lang", Locale.GERMAN.getLanguage())).
+                    with(csrf())
+            ).
+            andExpect(status().is3xxRedirection()).
+            andExpect(redirectedUrl("/"));
 
     verify(mockEmailService).
-        sendRegistrationEmail("anna@example.com",
-            "Anna Petrova",
-            Locale.GERMAN);
+            sendRegistrationEmail("pesho@test.bg",
+                    "Petar Petrov",
+                    Locale.GERMAN);
   }
 }

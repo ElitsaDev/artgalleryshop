@@ -9,7 +9,7 @@
 <div th:replace="fragments/fragment::navbar">Navbar</div>
 <main class="container-fluid">
 <div class="container" id="container">
-    <h2 class="text"><span class="text-1">
+    <h2 class="text" th:text="#{search_offer}"><span class="text-1">
         Search for offers</span></h2>
     <form
             th:method="POST"
@@ -36,7 +36,7 @@
                 Try searching something else.
             </small>
         </div>
-        <button class="btn btn-search" type="submit">Search</button>
+        <button class="btn btn-search" th:text="#{search_button}" type="submit">Search</button>
     </form>
 </div>
 

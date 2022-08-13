@@ -1,7 +1,7 @@
 -- some test users
 INSERT INTO users (id, username, email, first_name, last_name,  password)
 VALUES (1, 'admin', 'admin@gmail.com', 'Admin', 'Adminov', 'ff7d5112585d4b68624f0afe939f8341d3066eec451d440c4dbb8425fa7f8b45a08f1b44e16c395d');
-#         (2, 'elica', 'eli@gmail.com', 'Elica', 'Andreeva', '65843937954fbdd40fc9f463d3f8c5002ccb0ff6ec48a10e031f03334f036b9602cd637627ad04fe');
+--        (2, 'elica', 'eli@gmail.com', 'Elica', 'Andreeva', '65843937954fbdd40fc9f463d3f8c5002ccb0ff6ec48a10e031f03334f036b9602cd637627ad04fe');
 
 INSERT INTO authors (id, name)
 VALUES (1, 'Leonardo da Vinci'),

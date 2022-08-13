@@ -23,6 +23,8 @@ public class RestApiController {
 //    @Transactional
     public ResponseEntity<List<StatisticViewModel>> getStatistic() {
         List<StatisticViewModel> statisticViewModels = this.statisticService.getStatistic();
+
+
         return new ResponseEntity<>(statisticViewModels, HttpStatus.OK);
     }
 }

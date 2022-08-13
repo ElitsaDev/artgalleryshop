@@ -69,19 +69,19 @@
                                 </li>
                                 <li class="nav-item dropdown" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
                                     <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{navbar_admin}">
                                         Admin
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" th:text="#{navbar_add_offer}" href="/offers/add">Add Offer</a>
-                                        <a class="dropdown-item" href="/offers/delete">Delete offer</a>
+                                        <a class="dropdown-item" href="" th:href="@{/offers/all}" th:text="#{navbar_delete_offer}" >Delete offer</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="/admin/all-users">Change user role</a>
+                                        <a class="dropdown-item" href="/admin/all-users" th:text="#{navbar_change_userRole}">Change user role</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown" sec:authorize="hasRole('MODERATOR')"  th:unless="${#authorization.expression('hasRole(''ADMIN'')')}">
                                     <a class="nav-link dropdown-toggle" href="/" id="navbarDropdown_Mod" role="button"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" th:text="#{navbar_moderator}">
                                         Moderator
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -144,7 +144,9 @@
             </nav>
         </header>
         <footer  th:fragment="footer">
-            <div class=footer>&copy;2022. All rights reserved. Elitsa Andreeva</div>
+            <div class=footer >&copy;2022.
+                <span th:text="#{navbar_footer}"> All rights reserved. Elitsa Andreeva</span>
+            </div>
         </footer>
     </body>
 </html>

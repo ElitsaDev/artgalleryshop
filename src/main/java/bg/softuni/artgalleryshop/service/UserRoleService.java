@@ -15,7 +15,6 @@ public class UserRoleService {
         this.userRoleRepository = userRoleRepository;
     }
 
-
     public void initializeRoles() {
         if(userRoleRepository.count()!=0){
             return;

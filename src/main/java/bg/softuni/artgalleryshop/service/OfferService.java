@@ -1,7 +1,6 @@
 package bg.softuni.artgalleryshop.service;
 
 import bg.softuni.artgalleryshop.model.dto.offer.OfferDetailDTO;
-import bg.softuni.artgalleryshop.model.entity.AuthorEntity;
 import bg.softuni.artgalleryshop.model.entity.ProductEntity;
 import bg.softuni.artgalleryshop.repository.AuthorRepository;
 import bg.softuni.artgalleryshop.repository.ProductRepository;
@@ -62,7 +61,6 @@ public class OfferService {
         newOffer.setProduct(product);
         newOffer.setSeller(seller);
 
-
         offerRepository.save(newOffer);
     }
 
@@ -81,7 +79,7 @@ public class OfferService {
                 .orElse(null);
     }
 
-    public Object findOfferById(UUID id) {
+    public Optional<OfferEntity> findOfferById(UUID id) {
         return this.offerRepository.findById(id);
     }
 
@@ -95,4 +93,5 @@ public class OfferService {
                         .findById(uuid)
                                 .map(offerMapper::offerEntityToOfferDetailDTO);
     }
+
 }

@@ -884,3 +884,15 @@ section.map{
     background-blend-mode: soft-light;
     backdrop-filter: opacity(50%);
 }
+
+.input-sm{
+    max-width: 150px;
+}
+div.order{
+    margin: 20px;
+    padding: 10px;
+    border:1px solid #b9bbbe;
+}
+span.lb{
+    size: 15px;
+}

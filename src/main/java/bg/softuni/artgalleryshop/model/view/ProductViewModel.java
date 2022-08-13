@@ -4,17 +4,11 @@ import java.math.BigDecimal;
 
 public class ProductViewModel {
     private String name;
-
     private String category;
-
     private String imageUrl;
-
     private int year;
-
     private Integer length;
-
     private Integer width;
-
     private String author;
 
     public ProductViewModel() {

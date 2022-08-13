@@ -20,7 +20,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ArtGalleryShopUserDetailsServiceTest {
-
   @Mock
   private UserRepository mockUserRepo;
 
@@ -38,19 +37,20 @@ class ArtGalleryShopUserDetailsServiceTest {
     // arrange
     UserEntity testUserEntity =
         new UserEntity().
-                setUsername("pesho89").
-                setPassword("topsecret").
+                setUsername("pesho").
+                setPassword("123456").
                 setEmail("pesho@example.com").
                 setFirstName("Pesho").
-                setLastName("Petrov").
+                setLastName("Peshov").
                 setUserRoles(
                 List.of(
                     new UserRoleEntity().setUserRole(UserRoleEnum.ADMIN),
+                    new UserRoleEntity().setUserRole(UserRoleEnum.MODERATOR),
                     new UserRoleEntity().setUserRole(UserRoleEnum.USER)
                 )
             );
 
-    when(mockUserRepo.findByEmail(testUserEntity.getEmail())).
+    when(mockUserRepo.findByUsername(testUserEntity.getUsername())).
         thenReturn(Optional.of(testUserEntity));
 
     // act
@@ -69,11 +69,13 @@ class ArtGalleryShopUserDetailsServiceTest {
 
     var authorities = userDetails.getAuthorities();
 
-    Assertions.assertEquals(2, authorities.size());
+    Assertions.assertEquals(3, authorities.size());
 
     var authoritiesIter = authorities.iterator();
 
     Assertions.assertEquals("ROLE_" + UserRoleEnum.ADMIN.name(),
+        authoritiesIter.next().getAuthority());
+    Assertions.assertEquals("ROLE_" + UserRoleEnum.MODERATOR.name(),
         authoritiesIter.next().getAuthority());
     Assertions.assertEquals("ROLE_" + UserRoleEnum.USER.name(),
         authoritiesIter.next().getAuthority());
@@ -88,7 +90,7 @@ class ArtGalleryShopUserDetailsServiceTest {
     // act && assert
     Assertions.assertThrows(
         UsernameNotFoundException.class,
-        () -> toTest.loadUserByUsername("non-existant@example.com")
+        () -> toTest.loadUserByUsername("non-exist-user")
     );
   }
 }

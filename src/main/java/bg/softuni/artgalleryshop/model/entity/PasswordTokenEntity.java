@@ -1,10 +1,10 @@
 package bg.softuni.artgalleryshop.model.entity;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.io.Serializable;
 
-@Entity
-public class PasswordTokenEntity {
+@Entity(name="password_reset_token")
+public class PasswordTokenEntity implements Serializable {
 
     private static final int EXPIRATION = 60 * 24;
 

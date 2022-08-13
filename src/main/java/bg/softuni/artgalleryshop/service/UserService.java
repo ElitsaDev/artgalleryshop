@@ -35,7 +35,6 @@ public class UserService {
 
   private final UserRoleRepository userRoleRepository;
 
-
   public UserService(UserRepository userRepository,
                      PasswordEncoder passwordEncoder,
                      UserMapper userMapper,
@@ -88,8 +87,7 @@ public class UserService {
   }
 
   private void login(UserEntity userEntity) {
-//    UserDetails userDetails =
-//        userDetailsService.loadUserByUsername(userEntity.getEmail());
+
     UserDetails userDetails =
         userDetailsService.loadUserByUsername(userEntity.getUsername());
     Authentication auth =

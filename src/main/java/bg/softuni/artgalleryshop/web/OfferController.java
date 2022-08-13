@@ -27,10 +27,8 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/offers")
 public class OfferController {
-
     private final OfferService offerService;
     private final AuthorService authorService;
-
     public OfferController(OfferService offerService,
                            AuthorService authorService) {
         this.offerService = offerService;
@@ -71,7 +69,7 @@ public class OfferController {
             redirectAttributes.addFlashAttribute("addOfferModel", addOfferModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addOfferModel",
                     bindingResult);
-            return "redirect:/add";
+            return "redirect:/offers/add";
         }
 
         offerService.addOffer(addOfferModel, userDetails);
@@ -155,7 +153,4 @@ public class OfferController {
 
         return "redirect:/offers/all";
     }
-
-
-
 }

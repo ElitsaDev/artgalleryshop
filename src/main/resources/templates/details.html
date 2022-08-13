@@ -14,38 +14,79 @@
 
             <div class="card-body pb-1">
                 <h4 class="card-title">Offer details</h4>
-            <ul class="offer-details list-group list-group-flush">
-                <li class="list-group-item">
-                    <div class="card-text">• Product: <span th:text="*{product}"></span></div>
-                    <div class="card-text">• Weight: <span th:text="*{weight}"></span></div>
-                    <div class="card-text">• Price: <span th:text="*{price}"></span></div>
-                    <div class="card-text">• Medium type: <span th:text="*{medium}"></span></div>
-                    <div class="card-text">• Style type: <span th:text="*{style}"></span></div>
-                    <div class="card-text">• Product year: <span th:text="*{year}"></span></div>
-                    <div class="card-text">• Author: <span th:text="*{author}"></span></div>
-                </li>
-            </ul>
-<!--            <div class="card-body">-->
-<!--                <a class="card-link text" href="/offers/update">Update</a>-->
-<!--                <a class="card-link text" href="/offers/delete">Delete</a>-->
-<!--            </div>-->
-            <div class="card-body" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
-<!--                <a class="card-link" href="/">Delete</a>-->
-                    <!-- TODO Might be deleted only by admin and the seller -->
-                <form th:action="@{/offers/offer/{id}/(id=${id})}"
-                          th:method="delete">
-                        <input  class="card-link btn btn-search"
+                <ul class="offer-details list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="card-text">• Product: <span th:text="*{product}"></span></div>
+                        <div class="card-text">• Weight: <span th:text="*{weight}"></span></div>
+                        <div class="card-text">• Price: <span th:text="*{price}"></span></div>
+                        <div class="card-text">• Medium type: <span th:text="*{medium}"></span></div>
+                        <div class="card-text">• Style type: <span th:text="*{style}"></span></div>
+                        <div class="card-text">• Product year: <span th:text="*{year}"></span></div>
+                        <div class="card-text">• Author: <span th:text="*{author}"></span></div>
+                    </li>
+                </ul>
 
-                                type="submit"
-                                value="Delete">
+                <div class="card-body" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                    <form th:action="@{/offers/offer/{id}/(id=${id})}"
+                              th:method="delete">
+                            <input  class="card-link btn btn-search"
+                                    type="submit"
+                                    value="Delete">
+                    </form>
+                </div>
+            </div>
+            <div class="card-img-top-wrapper">
+                <img th:src="*{imageUrl}" class="card-img-top"  alt="Art image">
+            </div>
 
+            <div class="order" th:unless="${#authorization.expression('hasRole(''ADMIN'')')}">
+                <form th:object="${orderDTO}"
+                     th:method="post"
+                     th:action="@{/order}"
+                     class="card-body pb-1"
+                     th:unless="${#authorization.expression('hasRole(''MODERATOR'')')}">
+                    <h4 class="card-title">Quick order without registration!</h4>
+
+                                    <div class="grb">
+                                        <div class="input-boxes">
+
+                                            <div class="input-box">
+                                                <label for="quantity" class=""><i class="fas fa-user"></i></label>
+                                                <input
+                                                        id="quantity"
+                                                        th:value="${quantity}"
+                                                        name="quantity"
+                                                        min="1"
+                                                        type="number"
+                                                        max-wight = 20px
+                                                        class=""
+                                                        required/>
+                                            </div>
+                                            <div type="hidden" class="text" name="offerId" value="offerId" ></div>
+                                            <div class="input-box">
+                                                <label for="clientPhoneNumber"  class=""><i class="fas fa-phone"></i></label>
+                                                <input
+                                                        id="clientPhoneNumber"
+                                                        name="clientPhoneNumber"
+                                                        type="text"
+                                                        minlength="8"
+                                                        class=""
+                                                        placeholder="Enter phone number and we will call you..." required/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="card-link btn btn-search" type="submit">Order</button>
+                                    <label class="conditions">
+                                      <span class="er">Please choose!</span>
+                                        <span class="fbox">
+                                        <input type="checkbox" name="approve_conditions" autocomplete="off" value="1">
+                                        <span class="lb">I am at least 18 years old and I am agree to <span data-url="help?info=52" class="cbox">the general conditions and the way of processing my personal data</span></span>
+                                        </span>
+                                    </label>
                 </form>
             </div>
-        </div>
-        <div class="card-img-top-wrapper">
-            <img th:src="*{imageUrl}" class="card-img-top"  alt="Art image">
-        </div>
     </div>
+</div>
 </div>
 </main>
 <div>
