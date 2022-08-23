@@ -9,7 +9,6 @@ public class ObjectNotFoundException extends RuntimeException {
     private final Long objectId;
 
     public ObjectNotFoundException(Long objectId) {
-
         this.objectId = objectId;
     }
 
